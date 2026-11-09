@@ -95,17 +95,17 @@
 
       if (sphere) {
         sphere.style.transform =
-          "translate3d(" + (cx * 22).toFixed(2) + "px," + (cy * 16).toFixed(2) + "px,0)";
+          "translate3d(" + (cx * 34).toFixed(2) + "px," + (cy * 26).toFixed(2) + "px,0)";
       }
 
       orbits.forEach(function (orbit, i) {
-        var depth = 6 + i * 7;
+        var depth = 10 + i * 9;
         orbit.style.transform =
           "translate3d(" + (-cx * depth).toFixed(2) + "px," + (-cy * depth).toFixed(2) + "px,0)";
       });
 
-      visual.style.setProperty("--px", (cx * 46).toFixed(1) + "px");
-      visual.style.setProperty("--py", (cy * 46).toFixed(1) + "px");
+      visual.style.setProperty("--px", (cx * 64).toFixed(1) + "px");
+      visual.style.setProperty("--py", (cy * 64).toFixed(1) + "px");
 
       if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
         raf = requestAnimationFrame(tick);
@@ -114,12 +114,19 @@
       }
     };
 
-    window.addEventListener("pointermove", function (event) {
-      // ignore touch drags; react to mouse and pen only
-      if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+    var aim = function (event) {
       tx = (event.clientX / window.innerWidth - 0.5) * 2;
       ty = (event.clientY / window.innerHeight - 0.5) * 2;
       if (!raf) raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("pointermove", function (event) {
+      // ignore touch drags; react to mouse and pen only
+      if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+      aim(event);
     }, { passive: true });
+
+    // fallback for setups that never dispatch pointer events
+    window.addEventListener("mousemove", aim, { passive: true });
   }
 })();
