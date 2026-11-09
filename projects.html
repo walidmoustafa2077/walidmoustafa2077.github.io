@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Projects — Walid Mostafa</title>
+  <meta name="description" content="Every repository on the account — 10 public and 4 private — sorted by last update. Private work is labelled, not hidden.">
+  <meta property="og:title" content="All Projects — Walid Mostafa">
+  <meta property="og:description" content="Every repository, public and private, in one index. Private work is labelled, not hidden.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0705">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0705'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23ff5a1f' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="projects.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#archive">Skip to repository list</a>
+
+  <header class="topbar">
+    <div class="shell topbar-in">
+      <a class="brand" href="index.html"><span>Walid</span><span>Mostafa</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="index.html#work"><b>01</b> Work</a>
+        <a href="index.html#approach"><b>02</b> Approach</a>
+        <a href="index.html#contact"><b>03</b> Contact</a>
+      </nav>
+      <a class="top-link" href="index.html">← Portfolio</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ───────────── ARCHIVE HEAD ───────────── -->
+    <section class="section archive-head" aria-label="Repository index">
+      <div class="shell">
+        <div class="sec-head">
+          <p class="sec-num">03</p>
+          <div class="sec-copy">
+            <p class="eyebrow">Repository index — all 14</p>
+            <h2>Every repository,<br>public and <em>private</em>.</h2>
+            <p class="sec-body">
+              The full account, sorted by last update. Private work is labelled,
+              not hidden — open anything and ask for a walkthrough.
+            </p>
+          </div>
+          <div class="sec-side archive-meta">
+            <a class="text-link" href="index.html#work"><span aria-hidden="true">←</span> Back to selected work</a>
+            <div class="archive-counts">
+              <span><b>14</b> repositories</span>
+              <span><b>10</b> public</span>
+              <span><b>4</b> private</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── FILTERS ───────────── -->
+    <div class="archive-tools">
+      <div class="shell archive-tools-in">
+        <label class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+          <input id="repo-search" type="search" placeholder="Search repositories" autocomplete="off" aria-label="Search repositories">
+        </label>
+
+        <div class="filter-group">
+          <span class="chips-label" aria-hidden="true">Language</span>
+          <div class="chips" role="group" aria-label="Filter by language">
+            <button class="chip" type="button" data-lang="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-lang="csharp" aria-pressed="false">C#</button>
+            <button class="chip" type="button" data-lang="python" aria-pressed="false">Python</button>
+            <button class="chip" type="button" data-lang="javascript" aria-pressed="false">JavaScript</button>
+            <button class="chip" type="button" data-lang="typescript" aria-pressed="false">TypeScript</button>
+            <button class="chip" type="button" data-lang="html" aria-pressed="false">HTML</button>
+            <button class="chip" type="button" data-lang="other" aria-pressed="false">Other</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="chips-label" aria-hidden="true">Visibility</span>
+          <div class="chips" role="group" aria-label="Filter by visibility">
+            <button class="chip" type="button" data-vis="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-vis="public" aria-pressed="false">Public</button>
+            <button class="chip" type="button" data-vis="private" aria-pressed="false">Private</button>
+          </div>
+        </div>
+
+        <p class="archive-count" id="repo-count" aria-live="polite">14 repositories</p>
+      </div>
+    </div>
+
+    <!-- ───────────── LIST ───────────── -->
+    <section class="section archive-list" id="archive">
+      <div class="shell">
+        <div class="repo-list" id="repo-list">
+
+          <div class="repo-row reveal is-private" data-lang="python" data-vis="private" data-repo="nexa-doc-dataset" aria-haspopup="dialog" role="button" tabindex="0">
+            <span class="repo-idx" aria-hidden="true">01</span>
+            <span class="repo-main">
+              <span class="repo-name">nexa-doc-dataset</span>
+              <span class="repo-desc">Private NexaDoc dataset work: synthetic documents, dewarping pairs, and shadow samples.</span>
+            </span>
+            <span class="repo-lang">Python</span>
+            <span class="repo-date">06 Nov 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag is-private">Private</span>
+              <a class="repo-ask" href="mailto:walidmostafa2077@gmail.com?subject=Walkthrough%20request%20%E2%80%94%20nexa-doc-dataset">Ask <span aria-hidden="true">↗</span></a>
+            </span>
+          </div>
+
+          <div class="repo-row reveal is-private" data-lang="javascript" data-vis="private" data-repo="store-system" aria-haspopup="dialog" role="button" tabindex="0">
+            <span class="repo-idx" aria-hidden="true">02</span>
+            <span class="repo-main">
+              <span class="repo-name">store-system</span>
+              <span class="repo-desc">Private retail back office — catalogue, stock, and sales.</span>
+            </span>
+            <span class="repo-lang">JavaScript</span>
+            <span class="repo-date">06 Nov 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag is-private">Private</span>
+              <a class="repo-ask" href="mailto:walidmostafa2077@gmail.com?subject=Walkthrough%20request%20%E2%80%94%20store-system">Ask <span aria-hidden="true">↗</span></a>
+            </span>
+          </div>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/voice-agent" target="_blank" rel="noopener" data-lang="csharp" data-vis="public" data-repo="voice-agent" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">03</span>
+            <span class="repo-main">
+              <span class="repo-name">voice-agent</span>
+              <span class="repo-desc">A local phone-call-style voice agent: streaming STT, local TTS, an Ollama brain, and barge-in at 250 ms.</span>
+            </span>
+            <span class="repo-lang">C#</span>
+            <span class="repo-date">04 Nov 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/PaperMask" target="_blank" rel="noopener" data-lang="python" data-vis="public" data-repo="PaperMask" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">04</span>
+            <span class="repo-main">
+              <span class="repo-name">PaperMask</span>
+              <span class="repo-desc">Document corner detection: MobileNetV3-Small + Lite-FPN, a heatmap and sub-pixel offset head, exported to ONNX for .NET.</span>
+            </span>
+            <span class="repo-lang">Python</span>
+            <span class="repo-date">01 Nov 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/DocDewarper-Lite" target="_blank" rel="noopener" data-lang="python" data-vis="public" data-repo="DocDewarper-Lite" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">05</span>
+            <span class="repo-main">
+              <span class="repo-name">DocDewarper-Lite</span>
+              <span class="repo-desc">UVDoc fine-tuning on the NexaDoc synthetic dewarp dataset, with a Kaggle 2×T4 training notebook.</span>
+            </span>
+            <span class="repo-lang">Python</span>
+            <span class="repo-date">30 Oct 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <div class="repo-row reveal is-private" data-lang="html" data-vis="private" data-repo="NexaCV" aria-haspopup="dialog" role="button" tabindex="0">
+            <span class="repo-idx" aria-hidden="true">06</span>
+            <span class="repo-main">
+              <span class="repo-name">NexaCV</span>
+              <span class="repo-desc">A subscription CV builder: AI-assisted writing, ATS-friendly exports, and Paddle billing that handles the edge cases.</span>
+            </span>
+            <span class="repo-lang">HTML</span>
+            <span class="repo-date">14 Oct 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag is-private">Private</span>
+              <a class="repo-ask" href="mailto:walidmostafa2077@gmail.com?subject=NexaCV%20walkthrough">Ask <span aria-hidden="true">↗</span></a>
+            </span>
+          </div>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/let-me-code" target="_blank" rel="noopener" data-lang="typescript" data-vis="public" data-repo="let-me-code" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">07</span>
+            <span class="repo-main">
+              <span class="repo-name">let-me-code</span>
+              <span class="repo-desc">An agent factory for opencode: specialised subagents, workflow skills, and a delegation MCP server, bootstrapped with one command.</span>
+            </span>
+            <span class="repo-lang">TypeScript</span>
+            <span class="repo-date">03 Oct 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/DocShadow-Lite" target="_blank" rel="noopener" data-lang="python" data-vis="public" data-repo="DocShadow-Lite" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">08</span>
+            <span class="repo-main">
+              <span class="repo-name">DocShadow-Lite</span>
+              <span class="repo-desc">PyTorch document shadow removal: IOANet stage one, Laplacian-pyramid refinement stage two, flexible resolution.</span>
+            </span>
+            <span class="repo-lang">Python</span>
+            <span class="repo-date">22 Aug 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <div class="repo-row reveal is-private" data-lang="javascript" data-vis="private" data-repo="POS" aria-haspopup="dialog" role="button" tabindex="0">
+            <span class="repo-idx" aria-hidden="true">09</span>
+            <span class="repo-main">
+              <span class="repo-name">POS</span>
+              <span class="repo-desc">Private point-of-sale build in JavaScript.</span>
+            </span>
+            <span class="repo-lang">JavaScript</span>
+            <span class="repo-date">21 Aug 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag is-private">Private</span>
+              <a class="repo-ask" href="mailto:walidmostafa2077@gmail.com?subject=NexaPOS%20walkthrough">Ask <span aria-hidden="true">↗</span></a>
+            </span>
+          </div>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/Doc-Dataset-Generate" target="_blank" rel="noopener" data-lang="python" data-vis="public" data-repo="Doc-Dataset-Generate" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">10</span>
+            <span class="repo-main">
+              <span class="repo-name">Doc-Dataset-Generate</span>
+              <span class="repo-desc">SynDoc_Wild: synthetic document images with shadows, camera degradation, and perspective warp for training.</span>
+            </span>
+            <span class="repo-lang">Python</span>
+            <span class="repo-date">20 Jan 2026</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/Tathkir" target="_blank" rel="noopener" data-lang="csharp" data-vis="public" data-repo="Tathkir" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">11</span>
+            <span class="repo-main">
+              <span class="repo-name">Tathkir</span>
+              <span class="repo-desc">A WPF + ASP.NET Core Islamic utilities suite: prayer times, athkar, tasbeeh, Qur'an, and 100+ reciters.</span>
+            </span>
+            <span class="repo-lang">C#</span>
+            <span class="repo-date">05 Dec 2025</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/RecycleBinTray" target="_blank" rel="noopener" data-lang="other" data-vis="public" data-repo="RecycleBinTray" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">12</span>
+            <span class="repo-main">
+              <span class="repo-name">RecycleBinTray</span>
+              <span class="repo-desc">A Windows tray monitor for the Recycle Bin: live item count and size, open or empty from a native menu.</span>
+            </span>
+            <span class="repo-lang">Other</span>
+            <span class="repo-date">05 Dec 2025</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/tasks-lite" target="_blank" rel="noopener" data-lang="javascript" data-vis="public" data-repo="tasks-lite" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">13</span>
+            <span class="repo-main">
+              <span class="repo-name">tasks-lite</span>
+              <span class="repo-desc">A task API with JWT auth, validation, clean errors, and Swagger docs.</span>
+            </span>
+            <span class="repo-lang">JavaScript</span>
+            <span class="repo-date">29 Aug 2025</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="repo-row reveal" href="https://github.com/walidmoustafa2077/walidmoustafa2077" target="_blank" rel="noopener" data-lang="other" data-vis="public" data-repo="walidmoustafa2077" aria-haspopup="dialog">
+            <span class="repo-idx" aria-hidden="true">14</span>
+            <span class="repo-main">
+              <span class="repo-name">walidmoustafa2077</span>
+              <span class="repo-desc">The profile README behind this account.</span>
+            </span>
+            <span class="repo-lang">Markdown</span>
+            <span class="repo-date">14 Aug 2025</span>
+            <span class="repo-state">
+              <span class="repo-tag">Public</span>
+              <span class="repo-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+        </div>
+
+        <div class="archive-empty" id="repo-empty" hidden>
+          <p>Nothing matches that filter.</p>
+          <button class="chip" type="button" id="repo-reset">Clear filters</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <dialog class="modal repo-modal" id="repo-modal" aria-labelledby="repo-modal-name">
+    <div class="repo-modal-in">
+      <header class="repo-modal-head">
+        <div class="repo-modal-title">
+          <p class="eyebrow" id="repo-modal-kicker">Repository</p>
+          <h2 id="repo-modal-name">Repository</h2>
+          <p class="repo-modal-desc" id="repo-modal-desc"></p>
+        </div>
+        <button class="modal-close" type="button" data-close aria-label="Close repository">×</button>
+      </header>
+
+      <div class="repo-modal-scroll">
+        <dl class="modal-meta repo-modal-meta">
+          <div><dt>Language</dt><dd id="repo-modal-lang">—</dd></div>
+          <div><dt>Last update</dt><dd id="repo-modal-date">—</dd></div>
+          <div><dt>Status</dt><dd id="repo-modal-status">—</dd></div>
+        </dl>
+        <div class="readme" id="repo-modal-body"></div>
+      </div>
+
+      <footer class="repo-modal-foot">
+        <p class="repo-modal-note" id="repo-modal-note"></p>
+        <div class="repo-modal-actions">
+          <a class="repo-modal-ask" id="repo-modal-ask" href="#" hidden>Ask for a walkthrough <span aria-hidden="true">↗</span></a>
+          <button class="btn btn-sm" type="button" data-close>Close</button>
+          <a class="btn btn-sm" id="repo-modal-link" href="#" target="_blank" rel="noopener">View the repository <span aria-hidden="true">→</span></a>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="shell footer-in">
+      <p>© <span id="year">2026</span> Walid Mostafa</p>
+      <nav class="footer-nav" aria-label="Elsewhere">
+        <a href="https://github.com/walidmoustafa2077" target="_blank" rel="noopener">Github</a>
+        <a href="https://www.linkedin.com/in/walidmostafa77" target="_blank" rel="noopener">Linkedin</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="readmes.js" defer></script>
+  <script src="projects.js" defer></script>
+</body>
+</html>
