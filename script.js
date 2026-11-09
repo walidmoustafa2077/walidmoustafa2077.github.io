@@ -81,13 +81,10 @@
     });
   }
 
-  // interactive hero background — pointer parallax, desktop pointers only
+  // interactive hero background — pointer parallax
   var visual = document.querySelector(".hero-visual");
-  var finePointer =
-    !reduced &&
-    window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  if (visual && finePointer) {
+  if (visual) {
     var sphere = visual.querySelector(".sphere");
     var orbits = Array.prototype.slice.call(visual.querySelectorAll(".orbit"));
     var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
@@ -118,6 +115,8 @@
     };
 
     window.addEventListener("pointermove", function (event) {
+      // ignore touch drags; react to mouse and pen only
+      if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
       tx = (event.clientX / window.innerWidth - 0.5) * 2;
       ty = (event.clientY / window.innerHeight - 0.5) * 2;
       if (!raf) raf = requestAnimationFrame(tick);
