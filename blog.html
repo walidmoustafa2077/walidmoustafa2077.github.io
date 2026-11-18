@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>Blog — Walid Mostafa</title>
+  <meta name="description" content="Writing about .NET, architecture, databases, and the unglamorous parts of shipping software. Notes from real systems, not tutorials.">
+  <meta property="og:title" content="Development Insights &amp; Ideas — Walid Mostafa">
+  <meta property="og:description" content="Thoughts, tutorials, and lessons from building software that has to survive production.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0705">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0705'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23ff5a1f' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="blog.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#posts">Skip to posts</a>
+
+  <header class="topbar">
+    <div class="shell topbar-in">
+      <a class="brand" href="index.html"><span>Walid</span><span>Mostafa</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="index.html#work"><b>03</b><span>Work</span></a>
+        <a href="index.html#approach"><b>04</b><span>Approach</span></a>
+        <a href="blog.html" class="is-active"><b>05</b><span>Blog</span></a>
+        <a href="index.html#contact"><b>06</b><span>Contact</span></a>
+      </nav>
+      <a class="top-link" href="https://github.com/walidmoustafa2077" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ───────────── BLOG HEAD ───────────── -->
+    <section class="blog-head" aria-label="Blog introduction">
+      <div class="shell">
+        <p class="blog-kicker">( <b>05</b> — Blog )</p>
+        <h1 class="blog-title">Development<br><em>Insights</em> &amp; Ideas.</h1>
+        <p class="blog-lede">
+          Thoughts, tutorials, and lessons from my journey in software
+          development — written against systems that had to run outside the demo.
+        </p>
+      </div>
+    </section>
+
+    <!-- ───────────── FILTERS ───────────── -->
+    <div class="blog-tools">
+      <div class="shell blog-tools-in">
+        <div class="blog-filters" id="blog-filters" role="group" aria-label="Filter posts by category"></div>
+
+        <div class="blog-tools-right">
+          <label class="b-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+            <input id="blog-search" type="search" placeholder="Search posts" autocomplete="off" aria-label="Search posts">
+          </label>
+
+          <label class="b-sort">
+            <span>Sort</span>
+            <select id="blog-sort" aria-label="Sort posts">
+              <option value="latest">Latest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="title">A – Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────────── POSTS ───────────── -->
+    <section class="blog-list" id="posts" aria-label="All posts">
+      <div class="shell">
+        <div class="blog-grid" id="blog-grid"></div>
+
+        <p class="blog-empty" id="blog-empty" hidden>
+          <span id="blog-empty-text">No posts yet.</span>
+          <small>The first one is being written. In the meantime, there is <a href="projects.html">work to look at</a>.</small>
+        </p>
+
+        <nav class="blog-pager" id="blog-pager" aria-label="Blog pages"></nav>
+      </div>
+    </section>
+
+    <!-- ───────────── NEWSLETTER ───────────── -->
+    <section class="newsletter" aria-label="Newsletter">
+      <div class="shell">
+        <div class="newsletter-in">
+          <div class="newsletter-copy">
+            <span class="newsletter-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <div>
+              <p>Newsletter</p>
+              <h2>Stay updated with new articles.</h2>
+              <small>Get notified when I publish a new post and development insight.</small>
+            </div>
+          </div>
+
+          <form class="newsletter-form" id="newsletter-form" data-static-form data-form-kind="subscribe">
+            <input type="email" name="email" placeholder="Your email address" autocomplete="email" required aria-label="Your email address">
+
+            <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="_subject" value="Blog subscriber — walidmoustafa2077.github.io">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+
+            <button class="btn btn-sm" type="submit">Subscribe <span class="arr" aria-hidden="true">→</span></button>
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-in">
+      <p>© <span id="year">2026</span> Walid Mostafa</p>
+      <nav class="footer-nav" aria-label="Elsewhere">
+        <a href="https://github.com/walidmoustafa2077" target="_blank" rel="noopener">Github</a>
+        <a href="https://www.linkedin.com/in/walidmostafa77" target="_blank" rel="noopener">Linkedin</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="blog/posts.js"></script>
+  <script src="script.js?v=4" defer></script>
+  <script src="blog.js" defer></script>
+</body>
+</html>
