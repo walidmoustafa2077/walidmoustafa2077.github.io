@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+
+  <!-- ── the index reads these ──────────────────────────────────── -->
+  <title>When a model name goes stale — Walid Mostafa</title>
+  <meta name="description" content="The per-agent model resolution order in let-me-code, and why an unknown-model error retries against the next candidate.">
+  <meta name="post:category" content="Development">
+  <meta name="post:date" content="2026-11-16">
+  <meta name="post:tags" content="Node.js, MCP, Configuration">
+  <!-- ──────────────────────────────────────────────────────────── -->
+
+  <meta name="theme-color" content="#0a0705">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0705'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23ff5a1f' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../blog.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#article">Skip to article</a>
+
+  <header class="topbar">
+    <div class="shell topbar-in">
+      <a class="brand" href="../index.html"><span>Walid</span><span>Mostafa</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="../index.html#work"><b>03</b><span>Work</span></a>
+        <a href="../index.html#approach"><b>04</b><span>Approach</span></a>
+        <a href="../blog.html" class="is-active"><b>05</b><span>Blog</span></a>
+        <a href="../index.html#contact"><b>06</b><span>Contact</span></a>
+      </nav>
+      <a class="top-link" href="../blog.html">← All posts</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <article id="article">
+      <header class="post-head">
+        <div class="shell">
+          <p class="blog-kicker">( <a href="../blog.html">Blog</a> — <b>Development</b> )</p>
+          <h1 class="post-title">When a model name goes stale</h1>
+          <p class="post-lede">A dead provider string should degrade a job, not kill it.</p>
+
+          <ul class="post-meta">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              <time datetime="2026-11-16">Nov 16, 2026</time>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/></svg>
+              <span data-readtime>1 min read</span>
+            </li>
+            <li class="post-meta-cat">Development</li>
+          </ul>
+        </div>
+      </header>
+
+      <div class="post-body shell">
+        <p>
+          Model identifiers rot. A provider renames a model, retires a preview
+          build, or stops serving a region. If your agent config hardcodes one
+          name, the day it changes every delegated job fails with an error that
+          looks like a bug in your code.
+        </p>
+
+        <p>
+          <a href="https://github.com/walidmoustafa2077/let-me-code">let-me-code</a> resolves the model for each call from
+          <code>DELEGATE_CONFIG.json</code>, most specific first.
+        </p>
+
+        <pre><code>{
+  "defaultModel": "gemini-proxy/flash",
+  "fallbackModel": "ollama/deepseek-v4.1-flash:cloud",
+  "allowCustomModel": true,
+  "agents": {
+    "senior-dev": {
+      "model": "gemini-proxy/flash",
+      "fallback": "ollama/deepseek-v4.1-flash:cloud",
+      "allowCustom": true
+    },
+    "junior-dev": {
+      "model": "ollama/deepseek-v4.1-flash:cloud",
+      "allowCustom": false
+    }
+  }
+}</code></pre>
+
+        <p>
+          Resolution order, per call: agent <code>model</code> →
+          <code>defaultModel</code> → agent <code>fallback</code> →
+          <code>fallbackModel</code>.
+        </p>
+
+        <h2>The retry that matters</h2>
+
+        <p>
+          On an <em>unknown-model</em> error, the job retries the same message
+          against the next candidate model. That is the whole trick. A stale
+          provider name degrades the run instead of ending it.
+        </p>
+
+        <p>
+          This is not the same as a general retry. Retrying the identical request
+          against the identical model would just fail again. Retrying against the
+          next candidate works because the failure is about the model, not the
+          message.
+        </p>
+
+        <h2>Pinning is a deliberate choice</h2>
+
+        <p>
+          <code>let-me-code init --model &lt;id&gt;</code> writes the id as
+          <code>defaultModel</code>, as each agent's <code>model</code>, and onto
+          every factory agent in <code>opencode.json</code>. Without that flag
+          nothing is pinned, and every agent inherits the default model of the
+          opencode session it runs in.
+        </p>
+
+        <blockquote>
+          <p>Pinning buys reproducibility. Falling back buys uptime. Knowing which one you asked for is the whole design.</p>
+        </blockquote>
+
+        <p>
+          The per-agent <code>allowCustom</code> flag also acts as an allowlist:
+          passing a model to <code>delegate_task</code> is rejected unless the
+          agent or <code>allowCustomModel</code> permits it. Cheap model for
+          mechanical work, expensive model where it counts, and no way for a
+          caller to quietly override the expensive one.
+        </p>
+      </div>
+    </article>
+
+    <div class="post-foot">
+      <div class="shell post-foot-in">
+        <ul class="post-tags">
+          <li>Node.js</li>
+          <li>MCP</li>
+          <li>Configuration</li>
+        </ul>
+        <a class="text-link" href="../blog.html"><span aria-hidden="true">←</span> All posts</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-in">
+      <p>© <span id="year">2026</span> Walid Mostafa</p>
+      <nav class="footer-nav" aria-label="Elsewhere">
+        <a href="https://github.com/walidmoustafa2077" target="_blank" rel="noopener">Github</a>
+        <a href="https://www.linkedin.com/in/walidmostafa77" target="_blank" rel="noopener">Linkedin</a>
+        <a href="../index.html#contact">Contact</a>
+        <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=4" defer></script>
+  <script src="../blog.js" defer></script>
+</body>
+</html>

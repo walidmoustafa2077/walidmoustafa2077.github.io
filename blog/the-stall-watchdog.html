@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+
+  <!-- ── the index reads these ──────────────────────────────────── -->
+  <title>The watchdog that stopped thirty minutes of silence — Walid Mostafa</title>
+  <meta name="description" content="How a stall watchdog in the let-me-code delegation server turns half-hour hangs into a blocked ticket with a log.">
+  <meta name="post:category" content="Development">
+  <meta name="post:date" content="2026-11-17">
+  <meta name="post:tags" content="Node.js, MCP, Reliability">
+  <meta name="post:featured" content="true">
+  <!-- ──────────────────────────────────────────────────────────── -->
+
+  <meta name="theme-color" content="#0a0705">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0705'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23ff5a1f' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../blog.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#article">Skip to article</a>
+
+  <header class="topbar">
+    <div class="shell topbar-in">
+      <a class="brand" href="../index.html"><span>Walid</span><span>Mostafa</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="../index.html#work"><b>03</b><span>Work</span></a>
+        <a href="../index.html#approach"><b>04</b><span>Approach</span></a>
+        <a href="../blog.html" class="is-active"><b>05</b><span>Blog</span></a>
+        <a href="../index.html#contact"><b>06</b><span>Contact</span></a>
+      </nav>
+      <a class="top-link" href="../blog.html">← All posts</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <article id="article">
+      <header class="post-head">
+        <div class="shell">
+          <p class="blog-kicker">( <a href="../blog.html">Blog</a> — <b>Development</b> )</p>
+          <h1 class="post-title">The watchdog that stopped thirty minutes of silence</h1>
+          <p class="post-lede">A child that produces nothing for three minutes is wedged. Detecting that is not obvious.</p>
+
+          <ul class="post-meta">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              <time datetime="2026-11-17">Nov 17, 2026</time>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/></svg>
+              <span data-readtime>1 min read</span>
+            </li>
+            <li class="post-meta-cat">Development</li>
+          </ul>
+        </div>
+      </header>
+
+      <div class="post-body shell">
+        <p>
+          An agent that fails loudly is easy to handle. An agent that simply stops
+          producing output is worse, because nothing in your code has errored. The
+          process is alive, the socket is open, and the child is doing something
+          you cannot see.
+        </p>
+
+        <p>
+          In the delegation server for <a href="https://github.com/walidmoustafa2077/let-me-code">let-me-code</a>, the
+          default ceiling for a single child message was thirty minutes. A wedged
+          child would burn the entire budget before anyone learned it was stuck.
+        </p>
+
+        <h2>Fingerprinting the message stream</h2>
+
+        <p>
+          The fix is a watchdog. On every poll the client fingerprints the child's
+          message stream. When that fingerprint stops changing for
+          <code>stallMs</code>, the child is treated as wedged: the session is
+          interrupted, a log entry is written with <code>stalled: true</code>, and
+          the ticket is retried once in a fresh session.
+        </p>
+
+        <pre><code>{
+  "timeouts": {
+    "healthMs": 5000,      // wait for the server to answer a health check
+    "messageMs": 1800000,  // hard ceiling for one child message
+    "stallMs": 180000    // no visible progress this long = wedged
+  }
+}</code></pre>
+
+        <p>
+          The three numbers do different jobs. <code>messageMs</code> is the hard
+          ceiling, the one that eventually ends any run.
+          <code>stallMs</code> is the early warning, and it is the one that
+          actually saves you time because it fires while there is still budget
+          left to retry.
+        </p>
+
+        <h2>Why retry once, not forever</h2>
+
+        <p>
+          One retry in a fresh session handles the common transient case: a
+          provider hiccup, a malformed tool call, a dropped connection. A second
+          stall blocks the ticket and reports what was tried. Retrying
+          indefinitely converts one confusing failure into a slow, expensive,
+          confusing failure.
+        </p>
+
+        <blockquote>
+          <p>Silence is not a status. Silence is the absence of a status, and it has to be treated as an error.</p>
+        </blockquote>
+
+        <h2>The general lesson</h2>
+
+        <p>
+          Any supervisor of another process needs a definition of progress that is
+          narrower than "still running". Liveness checks tell you the process
+          exists; they do not tell you it is doing anything.
+        </p>
+
+        <p>
+          Settings and the rest of the configuration are documented at the
+          <a href="https://walidmoustafa2077.github.io/let-me-code/">documentation site</a>.
+        </p>
+      </div>
+    </article>
+
+    <div class="post-foot">
+      <div class="shell post-foot-in">
+        <ul class="post-tags">
+          <li>Node.js</li>
+          <li>MCP</li>
+          <li>Reliability</li>
+        </ul>
+        <a class="text-link" href="../blog.html"><span aria-hidden="true">←</span> All posts</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-in">
+      <p>© <span id="year">2026</span> Walid Mostafa</p>
+      <nav class="footer-nav" aria-label="Elsewhere">
+        <a href="https://github.com/walidmoustafa2077" target="_blank" rel="noopener">Github</a>
+        <a href="https://www.linkedin.com/in/walidmostafa77" target="_blank" rel="noopener">Linkedin</a>
+        <a href="../index.html#contact">Contact</a>
+        <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=4" defer></script>
+  <script src="../blog.js" defer></script>
+</body>
+</html>

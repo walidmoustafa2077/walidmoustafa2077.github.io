@@ -1,8 +1,8 @@
 window.__BLOG_POSTS__ = {
   "site": "https://walidmoustafa2077.github.io",
-  "count": 1,
+  "count": 6,
   "categories": {
-    "Development": 1
+    "Development": 6
   },
   "posts": [
     {
@@ -22,6 +22,96 @@ window.__BLOG_POSTS__ = {
       "words": 638,
       "featured": true,
       "url": "blog/the-unglamorous-parts.html"
+    },
+    {
+      "draft": false,
+      "slug": "delegation-over-one-chatbot",
+      "title": "Delegation beats one big chatbot — Walid Mostafa",
+      "excerpt": "Planning, implementation, review and commit are different agents with different permissions in let-me-code. Here is why that separation matters.",
+      "category": "Development",
+      "tags": [
+        "MCP",
+        "Agents",
+        "Node.js"
+      ],
+      "date": "2026-11-19",
+      "cover": "",
+      "readTime": 2,
+      "words": 350,
+      "featured": true,
+      "url": "blog/delegation-over-one-chatbot.html"
+    },
+    {
+      "draft": false,
+      "slug": "the-85-skills",
+      "title": "Eighty-five skills, not five hundred tools — Walid Mostafa",
+      "excerpt": "let-me-code ships 85 workflow skills rather than a huge tool list, and every agent reports which skill governed its work.",
+      "category": "Development",
+      "tags": [
+        "MCP",
+        "Agents",
+        "Process"
+      ],
+      "date": "2026-11-18",
+      "cover": "",
+      "readTime": 1,
+      "words": 316,
+      "featured": false,
+      "url": "blog/the-85-skills.html"
+    },
+    {
+      "draft": false,
+      "slug": "the-stall-watchdog",
+      "title": "The watchdog that stopped thirty minutes of silence — Walid Mostafa",
+      "excerpt": "How a stall watchdog in the let-me-code delegation server turns half-hour hangs into a blocked ticket with a log.",
+      "category": "Development",
+      "tags": [
+        "Node.js",
+        "MCP",
+        "Reliability"
+      ],
+      "date": "2026-11-17",
+      "cover": "",
+      "readTime": 1,
+      "words": 329,
+      "featured": true,
+      "url": "blog/the-stall-watchdog.html"
+    },
+    {
+      "draft": false,
+      "slug": "model-fallback-chain",
+      "title": "When a model name goes stale — Walid Mostafa",
+      "excerpt": "The per-agent model resolution order in let-me-code, and why an unknown-model error retries against the next candidate.",
+      "category": "Development",
+      "tags": [
+        "Node.js",
+        "MCP",
+        "Configuration"
+      ],
+      "date": "2026-11-16",
+      "cover": "",
+      "readTime": 1,
+      "words": 279,
+      "featured": false,
+      "url": "blog/model-fallback-chain.html"
+    },
+    {
+      "draft": false,
+      "slug": "upgrading-a-live-project",
+      "title": "The upgrade problem nobody thinks about — Walid Mostafa",
+      "excerpt": "Why let-me-code separates an additive install from an explicit upgrade, and how it avoids clobbering project-local settings.",
+      "category": "Development",
+      "tags": [
+        "Node.js",
+        "Tooling",
+        "DX"
+      ],
+      "date": "2026-11-15",
+      "cover": "",
+      "readTime": 1,
+      "words": 273,
+      "featured": false,
+      "url": "blog/upgrading-a-live-project.html"
     }
   ]
 };
