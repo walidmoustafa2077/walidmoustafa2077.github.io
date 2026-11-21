@@ -1,6 +1,27 @@
 window.__BLOG_POSTS__ = {
   "site": "https://walidmoustafa2077.github.io",
-  "count": 0,
-  "categories": {},
-  "posts": []
+  "count": 1,
+  "categories": {
+    "Development": 1
+  },
+  "posts": [
+    {
+      "draft": false,
+      "slug": "the-unglamorous-parts",
+      "title": "The unglamorous parts — Walid Mostafa",
+      "excerpt": "The delegation logic took an afternoon. Making a terminal behave took two weeks. On the work nobody posts about.",
+      "category": "Development",
+      "tags": [
+        "Node.js",
+        "PowerShell",
+        "MCP"
+      ],
+      "date": "2026-11-21",
+      "cover": "",
+      "readTime": 3,
+      "words": 638,
+      "featured": true,
+      "url": "blog/the-unglamorous-parts.html"
+    }
+  ]
 };
