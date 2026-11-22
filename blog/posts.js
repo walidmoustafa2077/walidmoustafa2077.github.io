@@ -8,21 +8,21 @@ window.__BLOG_POSTS__ = {
     {
       "draft": false,
       "scheduled": false,
-      "slug": "upgrading-a-live-project",
-      "title": "The upgrade problem nobody thinks about — Walid Mostafa",
-      "excerpt": "Why let-me-code separates an additive install from an explicit upgrade, and how it avoids clobbering project-local settings.",
+      "slug": "the-unglamorous-parts",
+      "title": "The unglamorous parts — Walid Mostafa",
+      "excerpt": "The delegation logic took an afternoon. Making a terminal behave took two weeks. On the work nobody posts about.",
       "category": "Development",
       "tags": [
         "Node.js",
-        "Tooling",
-        "DX"
+        "PowerShell",
+        "MCP"
       ],
       "date": "2026-11-21",
       "cover": "",
-      "readTime": 1,
-      "words": 273,
-      "featured": false,
-      "url": "blog/upgrading-a-live-project.html"
+      "readTime": 3,
+      "words": 638,
+      "featured": true,
+      "url": "blog/the-unglamorous-parts.html"
     }
   ]
 };
