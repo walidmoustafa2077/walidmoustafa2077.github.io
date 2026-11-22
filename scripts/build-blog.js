@@ -28,6 +28,10 @@ const OUT_JSON = path.join(BLOG_DIR, "posts.json");
 const OUT_JS = path.join(BLOG_DIR, "posts.js");
 const SITE = "https://walidmoustafa2077.github.io";
 
+/* Posts dated after today stay out of the index. A daily workflow run
+   rebuilds it, so a scheduled post appears on its date with no commit. */
+const TODAY = new Date().toISOString().slice(0, 10);
+
 const WORDS_PER_MINUTE = 220;
 
 const warnings = [];
@@ -170,14 +174,17 @@ function parsePost(file) {
     .map((tag) => plainText(tag))
     .filter(Boolean);
 
+  const date = normaliseDate(meta["post:date"], file);
+
   return {
     draft: false,
+    scheduled: date > TODAY,
     slug,
     title,
     excerpt,
     category: category || "Notes",
     tags,
-    date: normaliseDate(meta["post:date"], file),
+    date,
     cover: resolveCover(meta["post:cover"] || meta["og:image"], file),
     readTime: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
     words,
@@ -202,11 +209,16 @@ function build() {
 
   const posts = [];
   let drafts = 0;
+  let scheduled = 0;
 
   for (const file of files) {
     const post = parsePost(file);
     if (post.draft) {
       drafts += 1;
+      continue;
+    }
+    if (post.scheduled) {
+      scheduled += 1;
       continue;
     }
     posts.push(post);
@@ -236,6 +248,7 @@ function build() {
   console.log(
     `blog index: ${posts.length} post${posts.length === 1 ? "" : "s"}` +
       (drafts ? `, ${drafts} draft${drafts === 1 ? "" : "s"} skipped` : "") +
+      (scheduled ? `, ${scheduled} scheduled for later` : "") +
       ` → blog/posts.json (${state})`
   );
 

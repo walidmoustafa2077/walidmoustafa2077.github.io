@@ -7,6 +7,10 @@ on:
       - "blog/**"
       - "scripts/build-blog.js"
       - ".github/workflows/blog-index.yml"
+  # Runs daily so a post dated in the future appears on the right day
+  # without anyone pushing a commit.
+  schedule:
+    - cron: "17 4 * * *"
   workflow_dispatch:
 
 permissions:
